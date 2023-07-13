@@ -55,8 +55,8 @@ ROOT_URLCONF = 'Rafaflix.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': ["templates"], # BASE_DIR / "templates",
+        'APP_DIRS': True, # carrega os templates de cada app
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
