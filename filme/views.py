@@ -1,9 +1,20 @@
 from django.shortcuts import render
+from .models import Filme
+from django.views.generic import ListView, DetailView, TemplateView
 
 # Create your views here.
 
-def homepage(request):
-    return render(request, 'homepage.html')
 
+class Homepage(TemplateView):
+    template_name = 'homepage.html'
 
-#precisar ter uma url depois uma view e depois um template
+class Homefilmes(ListView):
+    model = Filme
+    template_name = 'homefilmes.html'
+    context_object_name = 'filmes'
+    paginate_by = 3
+
+class DetalhesFilme(DetailView):
+    template_name = 'detalhesfilme.html'
+    model = Filme
+

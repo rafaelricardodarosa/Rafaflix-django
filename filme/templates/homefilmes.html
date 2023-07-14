@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+    Homefilmes Rafaflix
+{% endblock %}
+
+{% block content %}
+    <div class="py-20 px-10">
+        <h1> Essa é a nossa Homefilmes</h1>
+        {% for filme in object_list %}
+        <hr>
+        <p> {{ filme }} </p>
+        <p> {{ filme.descricao }} </p>
+        <img src="{{ filme.thumb.url }}" alt="{{ filme.nome }}" width="200px">
+        {% endfor %}
+        
+    </div>
+{% endblock %}
