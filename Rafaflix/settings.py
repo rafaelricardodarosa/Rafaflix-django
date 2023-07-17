@@ -87,6 +87,7 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+AUTH_USER_MODEL = 'filme.Usuario' # mudar o modelo de usuario para o criado em filme\models.py app+classename
 
 AUTH_PASSWORD_VALIDATORS = [
     {
