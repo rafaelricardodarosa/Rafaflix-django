@@ -1,21 +1,17 @@
-
 {% load static %}
-
-<nav class="w-full flex justify-between items-center py-3 px-4 fixed z-50">  
-
-    <div class="w-6/12">   
-        <a href="/"> 
-            <img class="w-2/12 object-scale-down justify-items-start" src="{% static 'images/hashflix.png' %}" alt="Rafaflix">
+<nav class="w-full flex justify-between items-center py-3 px-4 fixed z-50">
+    <div class="w-6/12">
+        <a href="/">
+           <img class="w-2/12" src="{% static 'images/hashflix.png' %}">
         </a>
     </div>
-
-    <div class="w-6/12 flex flex-nowrap justify-end">   
+    <div class="w-6/12 flex flex-nowrap justify-end">
         <div class="mr-2">
-            <form>
-                <input class="bg-gray-800 rounded-full w-64 px-4 pl-8 py-1 focus:outline-none focus:shadow-outline" type="search" name="search" placeholder="Pesquisar">
+            <form method="get" action="{% url 'filme:pesquisafilme' %}">
+                <input type="text" class="py-1 px-2 rounded-md text-black" name="query" value="{{ request.GET.query }}" placeholder="Pesquisar...">
+                <input type="submit" value="">
             </form>
         </div>
-
         <div class="mr-2">
             <a href="#">
                 <button class="bg-red-600 text-white py-1 px-3 rounded-md">
@@ -23,16 +19,12 @@
                 </button>
             </a>
         </div>
-
         <div class="mr-2">
             <a href="#">
                 <button class="bg-red-600 text-white py-1 px-3 rounded-md">
-                    Sair
+                    Editar Perfil
                 </button>
             </a>
         </div>
-        
     </div>
-
-
 </nav>

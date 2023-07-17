@@ -37,7 +37,7 @@ class Pesquisafilme(ListView):
     template_name = "pesquisa.html"
     model = Filme
 
-    #object_list
+    # Sobrescrevendo o método get_queryset para filtrar os filmes pelo termo de pesquisa,deixando preciso a pesquisa
     def get_queryset(self):
         termo_pesquisa = self.request.GET.get('query')
         if termo_pesquisa:
