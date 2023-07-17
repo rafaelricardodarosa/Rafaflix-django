@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'filme.context.lista_filmes_recentes', # carrega o contexto de filmes recentes
                 'filme.context.lista_filmes_emalta', # carrega o contexto de filmes em alta
+            
             ],
         },
     },

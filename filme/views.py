@@ -25,4 +25,26 @@ class DetalhesFilme(DetailView):
         filmes_relacionados = Filme.objects.filter(categoria=self.object.categoria)[0:5]
         context["filmes_relacionados"] = filmes_relacionados
         return context
+    
+    #contador de visualizacoes dos episodios
+    def get(self, request, *args, **kwargs):
+        filme = self.get_object()
+        filme.visualizacoes += 1
+        filme.save()
+        return super(DetalhesFilme, self).get(request, *args, **kwargs)
+    
+class Pesquisafilme(ListView):
+    template_name = "pesquisa.html"
+    model = Filme
+
+    #object_list
+    def get_queryset(self):
+        termo_pesquisa = self.request.GET.get('query')
+        if termo_pesquisa:
+            object_list = self.model.objects.filter(titulo__icontains=termo_pesquisa)
+            return object_list
+        else:
+            return None
+        
+        
 
