@@ -22,7 +22,7 @@ class Filme(models.Model):
     
 # criar os episodios
 
-class Episodios(models.Model):
+class Episodio(models.Model):
     titulo = models.CharField(max_length=255)
     video = models.URLField(max_length=255)
     filme = models.ForeignKey(Filme, on_delete=models.CASCADE, related_name="episodios") 
