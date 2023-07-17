@@ -21,4 +21,18 @@ class Filme(models.Model):
         return self.titulo
     
 # criar os episodios
+
+class Episodios(models.Model):
+    titulo = models.CharField(max_length=255)
+    video = models.URLField(max_length=255)
+    filme = models.ForeignKey(Filme, on_delete=models.CASCADE, related_name="episodios") 
+    visualizacoes = models.IntegerField(default=0)
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.filme.titulo + " - " + self.titulo
+    
+    #on_delete=models.CASCADE - deletar o episodio quando o filme for deletado
+    # related_name="episodios" - para poder acessar os episodios do filme
+    
+    
 # criar o usuario
