@@ -14,10 +14,31 @@ HomeFilmes Hashflix
 
    <h2>Episodios</h2>
     <ul>
-    {% for episodio in object.episodio.all %}
-    <a href="{{ Episodio.video }}">
+    {% for episodio in object.episodios.all %}
+    <a href="{{ episodio.video }}">
       <p>Episodio {{ forloop.counter }}: {{ episodio.titulo }}</p>
     </a>
     {% endfor %}
 </div>
+<div class="py-10">
+  <h2>Filmes Relacionados</h2>
+  {% for filme in filmes_relacionados %}
+  <p>
+    <a href="{% url 'filme:detalhesfilme' filme.pk  %}">
+      <img src="{{ filme.thumb.url }}" alt="{{ filme.titulo }}">
+    </a>
+  </p>
+  {% endfor %}
+</div>
+
+<div class="py-10">
+  <h2> Novo </h2>
+  {{ lista_filmes_recentes }}
+</div>
+
+<div class="py-10">
+  <h2> Em Alta </h2>
+  {{ lista_filmes_emalta }}
+</div>
+
 {% endblock %}
