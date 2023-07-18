@@ -1,21 +1,29 @@
 from typing import Any, Dict
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Filme
 from django.views.generic import ListView, DetailView, TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
 
 class Homepage(TemplateView):
-    template_name = 'homepage.html'
+    template_name = "homepage.html"
 
-class Homefilmes(ListView):
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated: #usuario esta autenticado:
+            # redireciona para a homefilmes
+            return redirect('filme:homefilmes')
+        else:
+            return super().get(request, *args, **kwargs) # redireciona para a homepage
+
+class Homefilmes(LoginRequiredMixin, ListView):
     model = Filme
     template_name = 'homefilmes.html'
     context_object_name = 'filmes'
     paginate_by = 3
 
-class DetalhesFilme(DetailView):
+class DetalhesFilme(LoginRequiredMixin, DetailView):
     template_name = 'detalhesfilme.html'
     model = Filme
     
@@ -35,7 +43,7 @@ class DetalhesFilme(DetailView):
         usuario.filmes_vistos.add(filme)
         return super(DetalhesFilme, self).get(request, *args, **kwargs) #retorna o contexto de visualizacoes
     
-class Pesquisafilme(ListView):
+class Pesquisafilme(LoginRequiredMixin, ListView):
     template_name = "pesquisa.html"
     model = Filme
 
@@ -47,6 +55,22 @@ class Pesquisafilme(ListView):
             return object_list
         else:
             return None
+
+class Paginaperfil(LoginRequiredMixin, TemplateView):
+    template_name = "editarperfil.html"
+    
+class Criarconta(TemplateView):
+    template_name = "criarconta.html"
+
+# def homepage(request):
+#     return render(request, "homepage.html")
+
+# url - view - html
+# def homefilmes(request):
+#     context = {}
+#     lista_filmes = Filme.objects.all()
+#     context['lista_filmes'] = lista_filmes
+#     return render(request, "homefilmes.html", context)
         
         
 

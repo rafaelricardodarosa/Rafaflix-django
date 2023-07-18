@@ -134,3 +134,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# COMANDOS PARA QUE TENHA CONTROLE DE USUARIO
+
+LOGIN_REDIRECT_URL = 'filme:homefilmes' # redireciona para a pagina homefilmes , os dois pontos eh pra levar a uma url
+
+LOGIN_URL = 'filme:login' # redireciona para a pagina de login
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
