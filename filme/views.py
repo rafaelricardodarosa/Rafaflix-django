@@ -24,14 +24,16 @@ class DetalhesFilme(DetailView):
         context = super(DetalhesFilme, self).get_context_data(**kwargs)
         filmes_relacionados = Filme.objects.filter(categoria=self.object.categoria)[0:5]
         context["filmes_relacionados"] = filmes_relacionados
-        return context
+        return context #retorna o contexto de filmes relacionados
     
     #contador de visualizacoes dos episodios
     def get(self, request, *args, **kwargs):
         filme = self.get_object()
         filme.visualizacoes += 1
         filme.save()
-        return super(DetalhesFilme, self).get(request, *args, **kwargs)
+        usuario = request.user
+        usuario.filmes_vistos.add(filme)
+        return super(DetalhesFilme, self).get(request, *args, **kwargs) #retorna o contexto de visualizacoes
     
 class Pesquisafilme(ListView):
     template_name = "pesquisa.html"
