@@ -15,4 +15,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Rafaflix.settings')
 
 application = get_wsgi_application()
 
-# app = application # para vercel
+app = application # para vercel
