@@ -83,16 +83,31 @@ WSGI_APPLICATION = 'Rafaflix.wsgi.app' # para vercel
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+""" DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+} """
+
+DATABASES = {
+    
+    'default': {
+        
+       'ENGINE': 'django.db.backends.postgresql', 
+       'NAME': 'vercel',
+       'USER': 'default',
+       'PASSWORD': 'I0cDZRpt9noa',
+       'HOST': 'ep-cold-darkness-403869-pooler.us-east-1.postgres.vercel-storage.com',
+       'PORT': '5432',
+    
+}
+    
 }
 
-import dj_database_url # para vercel
+""" import dj_database_url # para vercel
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) # para vercel
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) # para vercel """
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -160,17 +175,17 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
-""" DATABASES = {
+DATABASES = {
     
     'default': {
         
        'ENGINE': 'django.db.backends.postgresql', 
-       'NAME': 'railway',
-       'USER': 'postgres',
-       'PASSWORD': 'uChVQyiBOeZOTSlLq1f',
-       'HOST': 'containers-us-west-196.railway.app',
-       'PORT': '6625',
+       'NAME': 'vercel',
+       'USER': 'default',
+       'PASSWORD': 'I0cDZRpt9noa',
+       'HOST': 'ep-cold-darkness-403869-pooler.us-east-1.postgres.vercel-storage.com',
+       'PORT': '5432',
     
 }
     
-} """
+}
