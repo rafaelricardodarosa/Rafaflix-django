@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os # para vercel
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-64=fnzcj*k4lx+f3@+$4r4r=nz$4b!xl0-k4%p*98-#0wt7%ti
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
+ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1', '.now.sh', 'localhost']
 
 
 # Application definition
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,6 +90,9 @@ DATABASES = {
     }
 }
 
+import dj_database_url # para vercel
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True) # para vercel
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -124,11 +129,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+#STATIC_ROOT = BASE_DIR / 'staticfiles' white noise
+
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
+"""STATICFILES_DIRS = [
     BASE_DIR / "static",
-]
+]"""
+
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static' )
+
 
 MEDIA_URL = 'media/'
 
@@ -148,3 +159,18 @@ LOGIN_URL = 'filme:login' # redireciona para a pagina de login
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+""" DATABASES = {
+    
+    'default': {
+        
+       'ENGINE': 'django.db.backends.postgresql', 
+       'NAME': 'railway',
+       'USER': 'postgres',
+       'PASSWORD': 'uChVQyiBOeZOTSlLq1f',
+       'HOST': 'containers-us-west-196.railway.app',
+       'PORT': '6625',
+    
+}
+    
+} """
