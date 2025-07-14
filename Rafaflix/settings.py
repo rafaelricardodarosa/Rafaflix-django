@@ -61,7 +61,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ["templates"], # BASE_DIR / "templates",
-        'APP_DIRS': True, # carrega os templates de cada app
+        'APP_DIRS': True, # carrega os templates de cada appddddd
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
